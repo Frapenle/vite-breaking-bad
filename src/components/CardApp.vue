@@ -1,15 +1,19 @@
+<script>
+export default {
+    // name: 'CardApp',
+    props: {
+        imgurl: String,
+        title: String
+    }
+}
+</script>
 <template lang="">
     <div class="card">
-        <img src="" alt="">
-        <p class="text-name"></p>
+        <img :src="imgurl" :alt="title">
+        <p class="text-name">{{title}}</p>
         <p class="text-type"></p>
     </div>
 </template>
-<script>
-export default {
-
-}
-</script>
 <style lang="scss">
 
 </style>
