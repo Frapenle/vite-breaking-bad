@@ -22,6 +22,8 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.cardsList = response.data.data;
+          this.cardsNumber = this.cardsList.length;
+          console.log(this.cardsNumber)
         })
         .catch(function (error) {
           console.log(error);
@@ -37,6 +39,7 @@ export default {
 
 <template>
   <main>
+    <h2 class="cards-number">Found {{ cardsNumber }} cards</h2>
     <div class="card-container">
       <div class="cards">
         <CardApp v-for="card in cardsList" :title="card.name" :imgUrl="card.card_images[0].image_url"
@@ -53,6 +56,10 @@ export default {
 main {
   padding: 2rem;
   background-color: $main-bg;
+}
+
+.cards-number {
+  margin: 1rem;
 }
 
 .card-container {
