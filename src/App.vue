@@ -1,17 +1,20 @@
 <script>
 // importo il component
+import HeaderVue from './components/HeaderVue.vue';
 import MainApp from './components/MainApp.vue'
 
 // esporto il component
 export default {
   components: {
-    MainApp
+    HeaderVue,
+    MainApp,
   }
 }
 </script>
 
 <template>
-  <!-- aggiungo il component al template -->
+  <!-- aggiungo i components al template -->
+  <HeaderVue />
   <MainApp />
 </template>
 
