@@ -1,7 +1,7 @@
 <template lang="">
-    <div>
-        
-    </div>
+    <header>
+        <h1>Yu-Gi-Oh Api</h1>
+    </header>
 </template>
 
 <script>
@@ -11,11 +11,18 @@ export default {
         return {
 
         }
-    }
-
+    },
 }
 </script>
 
-<style lang="" scoped>
-    
+<style lang="scss" scoped>
+header {
+    height: 60px;
+    padding: 0 1rem;
+    background-color: antiquewhite;
+}
+
+h1 {
+    line-height: 60px;
+}
 </style>
