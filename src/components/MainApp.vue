@@ -6,20 +6,21 @@ export default {
   data() {
     return {
       cardsList: [],
+      apiUrl: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=10&offset=0'
 
     }
   },
   //aggiungo le funzioni
   methods: {
     getCards() {
-      axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=10&offset=0', {
+      axios.get(this.apiUrl, {
         params: {
 
         }
       })
         .then((response) => {
           console.log(response.data);
-          this.cardsList = response.data;
+          this.cardsList = response.data.data;
         })
         .catch(function (error) {
           console.log(error);
@@ -36,8 +37,7 @@ export default {
 <template>
   <main>
     <div class="card-container">
-      <div class="cards" v-for="card in cardsList">
-        {{ card }}
+      <div class="cards">
         <card />
       </div>
     </div>
