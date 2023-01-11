@@ -1,13 +1,16 @@
 <script >
-import axios from 'axios'
+import axios from 'axios';
+import CardApp from './CardApp.vue';
 
 export default {
   name: 'MainApp',
+  components: {
+    CardApp,
+  },
   data() {
     return {
       cardsList: [],
       apiUrl: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=10&offset=0'
-
     }
   },
   //aggiungo le funzioni
@@ -38,7 +41,7 @@ export default {
   <main>
     <div class="card-container">
       <div class="cards">
-        <card />
+        <CardApp v-for="card in cardsList" :title="card.name" :imgurl="card.card_images[0].image_url" />
       </div>
     </div>
   </main>
