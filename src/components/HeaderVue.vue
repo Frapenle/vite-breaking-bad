@@ -1,13 +1,8 @@
 <template lang="">
     <header>
         <h1>Yu-Gi-Oh Api</h1>
-        <select name="archetype" id="archetypes">
-            <option value="Alien">Alien</option>
-            <option value="Laval">Laval</option>
-            <option value="Vylon">Vylon</option>
-            <option value="Inzektor">Inzektor</option>
-            <option value="Umi">Umi</option>
-            <option value="Gusto">Gusto</option>
+        <select v-model="archetype" id="archetypes" @change="$emit('selection', archetype)">
+            <option :value="item.toLowerCase()" v-for="item in archetypes">{{item}}</option>
         </select>
     </header>
 </template>
@@ -17,7 +12,8 @@ export default {
     name: 'HeaderVue',
     data() {
         return {
-
+            archetypes: ['Alien', 'Laval', 'Vylon', 'Inzektor', 'Umi', 'Gusto'],
+            archetype: 'alien'
         }
     },
 }
