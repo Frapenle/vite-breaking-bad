@@ -4,6 +4,7 @@ import CardApp from './CardApp.vue';
 
 export default {
   name: 'MainApp',
+  props: ['selection'],
   components: {
     CardApp,
   },
@@ -22,7 +23,7 @@ export default {
         params: {
           num: 20,
           offset: 0,
-          archetype: 'Alien'
+          archetype: this.selection
         }
       })
         .then((response) => {
@@ -37,10 +38,8 @@ export default {
     }
   },
   //aggiungo hook created per chiamare la funzione ad ogni caricamento della pagina
-  created() {
-    setTimeout(() => {
-      this.getCards();
-    }, 2000);
+  computed: {
+    getCards()
   }
 }
 </script>
