@@ -8,14 +8,25 @@ export default {
   components: {
     HeaderVue,
     MainApp,
-  }
+  },
+  data() {
+    return {
+      selection: '',
+    }
+  },
+  methods: {
+    getSelection(params) {
+      this.selection = params;
+    }
+  },
 }
+
 </script>
 
 <template>
   <!-- aggiungo i components al template -->
-  <HeaderVue />
-  <MainApp />
+  <HeaderVue @selection="getSelection" />
+  <MainApp :selection="selection" />
 </template>
 
 <style lang="scss">
