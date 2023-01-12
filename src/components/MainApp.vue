@@ -10,14 +10,20 @@ export default {
   data() {
     return {
       cardsList: [],
-      apiUrl: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=10&offset=0',
+      apiUrl: 'https://db.ygoprodeck.com/api/v7/cardinfo.php',
       cardsNumber: 0,
+      // archetypes: ['Alien', 'Laval', 'Vylon', 'Inzektor', 'Umi', 'Gusto'],
     }
   },
   //aggiungo le funzioni
   methods: {
     getCards() {
       axios.get(this.apiUrl, {
+        params: {
+          num: 20,
+          offset: 0,
+          archetype: 'Alien'
+        }
       })
         .then((response) => {
           console.log(response.data);
