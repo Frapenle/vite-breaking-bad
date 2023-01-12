@@ -32,7 +32,9 @@ export default {
   },
   //aggiungo hook created per chiamare la funzione ad ogni caricamento della pagina
   created() {
-    this.getCards();
+    setTimeout(() => {
+      this.getCards();
+    }, 2000);
   }
 }
 </script>
