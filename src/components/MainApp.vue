@@ -1,55 +1,32 @@
 <script >
-import axios from 'axios';
+
+import { store } from '../store.js';
 import CardApp from './CardApp.vue';
 
 export default {
   name: 'MainApp',
-  props: ['selection'],
   components: {
     CardApp,
   },
   data() {
     return {
-      cardsList: [],
-      apiUrl: 'https://db.ygoprodeck.com/api/v7/cardinfo.php',
-      cardsNumber: 0,
-      // archetypes: ['Alien', 'Laval', 'Vylon', 'Inzektor', 'Umi', 'Gusto'],
+      store,
+      archetypes: ['Alien', 'Laval', 'Vylon', 'Inzektor', 'Umi', 'Gusto'],
+      archetypeSelected: 'alien',
     }
   },
-  //aggiungo le funzioni
-  methods: {
-    getCards() {
-      axios.get(this.apiUrl, {
-        params: {
-          num: 20,
-          offset: 0,
-          archetype: this.selection
-        }
-      })
-        .then((response) => {
-          console.log(response.data);
-          this.cardsList = response.data.data;
-          this.cardsNumber = this.cardsList.length;
-          console.log(this.cardsNumber)
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
-  },
-  //aggiungo hook created per chiamare la funzione ad ogni caricamento della pagina
-  computed: {
-    getCards()
-  }
 }
 </script>
 
 <template>
   <main>
-    <h2 class="cards-number">Found {{ cardsNumber }} cards</h2>
+    <h2 class="cards-number">Found {{ store.cardsNumber }} cards</h2>
+    <select v-model="archetypeSelected" id="archetypes" @change="$emit('selection', archetypeSelected)">
+      <option :value="item.toLowerCase()" v-for="item in archetypes">{{ item }}</option>
+    </select>
     <div class="card-container">
       <div class="cards">
-        <CardApp v-for="card in cardsList" :title="card.name" :imgUrl="card.card_images[0].image_url"
+        <CardApp v-for="card in store.cardsList" :title="card.name" :imgUrl="card.card_images[0].image_url"
           :archetype="card.archetype" />
       </div>
     </div>
